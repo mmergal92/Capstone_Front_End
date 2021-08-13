@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = ""
+const url = "https://proof-backend.herokuapp.com/user"
 
 class UserComments {
     static all (){
