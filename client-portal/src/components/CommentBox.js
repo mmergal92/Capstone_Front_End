@@ -24,15 +24,15 @@ function CommentBox() {
     //     console.log("Adding text of username")
     //     setUsername(event.target.value)
     // };
-    // const handleDelete= async(value)=>{
-    //     const URL = "https://proof-backend.herokuapp.com/" + "user/"
-    //     console.log(URL)
-    //     // console.log(tempArray[0].comment)
-    //     const remove = await fetch (URL + "/" + value._id, {
-    //         method: 'DELETE',
-    //     })
-    //     console.log(value._id)
-    // }
+    const handleDelete= async(value)=>{
+        const URL = "https://proof-backend.herokuapp.com/" + "user/"
+        console.log(URL)
+        // console.log(tempArray[0].comment)
+        const remove = await fetch (URL + "/" + value._id, {
+            method: 'DELETE',
+        })
+        console.log(value._id)
+    }
     const getNewList = async() => {
         const postURL = "https://proof-backend.herokuapp.com/" + "user/"
         const response = await fetch (postURL)
@@ -76,6 +76,7 @@ function CommentBox() {
                     <tr>
                         <th>Date</th>
                         <th>Comment</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -84,6 +85,7 @@ function CommentBox() {
                                 <tr key={index}> 
                                     <td>{value.date}</td>  
                                     <td>{value.comment}</td>  
+                                    <td><button onClick={() => handleDelete(value)}>DELETE</button></td>
                                     </tr>
                         )})}
                     </tbody>
