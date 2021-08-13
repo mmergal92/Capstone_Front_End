@@ -56,15 +56,15 @@ function ProjectBox() {
         console.log("Adding text of username")
         setUsername(event.target.value)
     };
-    // const handleDelete= async(value)=>{
-    //     const URL = "https://proof-backend.herokuapp.com/" + "user/"
-    //     console.log(URL)
-    //     // console.log(tempArray[0].comment)
-    //     const remove = await fetch (URL + "/" + value._id, {
-    //         method: 'DELETE',
-    //     })
-    //     console.log(value._id)
-    // }
+    const handleDelete= async(value)=>{
+        const URL = "https://proof-backend.herokuapp.com/" + "projects/"
+        console.log(URL)
+        // console.log(tempArray[0].comment)
+        const remove = await fetch (URL + "/" + value._id, {
+            method: 'DELETE',
+        })
+        console.log(value._id)
+    }
     const getNewList = async() => {
         const postURL = "https://proof-backend.herokuapp.com/" + "projects/"
         const response = await fetch (postURL)
@@ -115,6 +115,7 @@ function ProjectBox() {
                         <th>dateUploaded</th>
                         <th>username</th>
                         <th>Notes</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,6 +128,7 @@ function ProjectBox() {
                                     <td>{value.dateUploaded}</td> 
                                     <td>{value.username}</td>  
                                     <td>{value.Notes}</td> 
+                                    <td><button onClick={() => handleDelete(value)}>DELETE</button></td>
                                     </tr>
                         )})}
                     </tbody>
