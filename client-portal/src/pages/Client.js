@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import CommentBox from '../components/CommentBox'
 import ProjectBox from '../components/project'
+import ProgressTracker from '../components/StatusTracker/progressTracker'
 
 const Client = (props) =>{
         return(
@@ -10,6 +11,7 @@ const Client = (props) =>{
                 <CommentBox />
                 </div>
                 <div className="project-box">
+                < ProgressTracker done ="70"/>
                 <ProjectBox />
                 </div>
             </div>

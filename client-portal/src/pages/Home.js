@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Carousel from "../components/HomeCarousel/carousel"
 
 // Components
 
@@ -10,6 +10,7 @@ function Home() {
             <h1>Welcome to this app</h1>
             </div>
             <div className = "home-content">
+                {/* <Carousel /> */}
             </div>
         </div>
     )

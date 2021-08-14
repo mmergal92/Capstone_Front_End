@@ -12,8 +12,10 @@ function CommentBox() {
     const [newList, setNewList] = useState(userCommentlist)
     // const [date, setDate] = useState('');
     const [comment, setComment] = useState('');
+    const [showEdit, setShowEdit] = useState(false)
     const [username, setUsername] = useState('');
     const [change, setChange] = useState(true)
+    const [editComment, setEditComment] = useState(comment)
     const tempArray = newList;
     //HANDLES
     const commentChange = (event) =>{
@@ -24,6 +26,9 @@ function CommentBox() {
     //     console.log("Adding text of username")
     //     setUsername(event.target.value)
     // };
+    const onToggle = () => {
+        setShowEdit(!showEdit)
+    }
     const handleDelete= async(value)=>{
         const URL = "https://proof-backend.herokuapp.com/" + "user/"
         console.log(URL)
@@ -32,6 +37,26 @@ function CommentBox() {
             method: 'DELETE',
         })
         console.log(value._id)
+    }
+    const handleEdit= async(response)=>{
+        const URL = "https://proof-backend.herokuapp.com/" + "user/"
+        console.log(response)
+        // console.log(tempArray[0].comment)
+        fetch (URL + "/" + response._id, {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify ({
+                comment: comment,
+            })
+        })
+        console.log("Did this work?")
+        // const tempArray = newList;
+        tempArray.push(response)
+        setNewList(tempArray)
+        setChange(!change);
     }
     const getNewList = async() => {
         const postURL = "https://proof-backend.herokuapp.com/" + "user/"
@@ -85,6 +110,7 @@ function CommentBox() {
                                 <tr key={index}> 
                                     <td>{value.date}</td>  
                                     <td>{value.comment}</td>  
+                                    <td><button onClick={onToggle}>EDIT</button></td>
                                     <td><button onClick={() => handleDelete(value)}>DELETE</button></td>
                                     </tr>
                         )})}
@@ -105,6 +131,13 @@ function CommentBox() {
                     <button onClick= {handleSubmit}>Submit</button>
                     </form>
                 </div>
+                {showEdit &&
+                 <form className = "edit" onSubmit={handleSubmit}>
+                    <textarea className = "edit-input" value = {comment} onChange = {commentChange} placeholder = "Edit Comment"/>
+                    <br/>
+                    <button onClick= {handleSubmit}>Update</button> 
+                 </form>
+                }
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
-import { Dropdown, Option } from "./dropdown";
+import { Dropdown, Option } from "./StatusDropdown/dropdown";
+import ProgressTracker from './StatusTracker/progressTracker';
 
 function ProjectBox() {
 
