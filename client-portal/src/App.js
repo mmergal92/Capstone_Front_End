@@ -9,8 +9,12 @@ import Header from './components/Header/Nav';
 import Footer from './components/Footer/Footer';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/Login';
 
 function App() {
+  const URL = "http://localhost:3000/"
+
   return (
     <div className="App">
       <Header />
@@ -29,6 +33,9 @@ function App() {
         </Route>
         <Route path="/login"> 
           <Login />
+        </Route>
+        <Route path="/SignIn"> 
+          <SignIn URL={URL}/>
         </Route>
       </Switch>
       <Footer />
