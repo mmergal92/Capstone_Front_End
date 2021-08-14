@@ -70,7 +70,7 @@ function CommentBox() {
         return (
             <div className = "comments">
                 <div className = "existing-comments">
-                <h3>hello</h3> 
+                <h3>Thoughts and Ideas:</h3> 
                 <table>
                     <thead>
                     <tr>
@@ -93,17 +93,17 @@ function CommentBox() {
                 <br/>
                 </div>
                 <div className = "new-comments">
-                <h3>Add a new Comment:</h3>
-                <form>
-                <label>
-                <p className="textcomment">
-                Commenting as:
-                <br />
-                </p>
-                <textarea className = "comment_input" value = {comment} onChange = {commentChange} placeholder = "New Comment"/>
-                </label><br/>
-                <button onClick= {handleSubmit}>Submit</button>
-                </form>
+                    <h3>Add a new Comment:</h3>
+                    <form>
+                    <label>
+                    <p className="textcomment">
+                    {/* Commenting as: */}
+                    <br />
+                    </p>
+                    <textarea className = "comment_input" value = {comment} onChange = {commentChange} placeholder = "New Comment"/>
+                    </label><br/>
+                    <button onClick= {handleSubmit}>Submit</button>
+                    </form>
                 </div>
             </div>
         )

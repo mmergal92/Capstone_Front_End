@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+import { Dropdown, Option } from "./dropdown";
 
 function ProjectBox() {
 
@@ -103,9 +104,9 @@ function ProjectBox() {
     })
     const loaded = () =>{
         return (
-            <div className = "comments">
-                <div className = "existing-comments">
-                <h3>hello</h3> 
+            <div className = "project">
+                <div className = "existing-projects">
+                <h3>Here is the tracker for your project</h3> 
                 <table>
                     <thead>
                     <tr>
@@ -148,6 +149,19 @@ function ProjectBox() {
                     Client:
                     <input type = "text" className = "client_input" value = {client} onChange = {clientChange} placeholder = "New Project client"/>
                     Status:
+                    <div>
+      <Dropdown
+        formLabel=""
+        buttonText="Update"
+        action="/client">
+        <Option selected value="STATUS" />
+        <Option value="Not Started" />
+        <Option value="In Progress" />
+        <Option value="Needs Review" />
+        <Option value="Under Review" />
+        <Option value="Done" />
+      </Dropdown>
+    </div>
                     <input type="status" className = "status_input" value = {status} onChange = {statusChange} placeholder = "New Project status"/>
                     <textarea className = "notes_input" value = {Notes} onChange = {notesChange} placeholder = "New Project Notes"/>
                     </label><br/>
