@@ -25,7 +25,7 @@ export const StyledButton = styled.input`
   height: 100%;
   display: flex;
   justify-content: center;
-  background-color: #4B4B67;
+  background-color: #657180;
   color: white;
   padding: 0.5rem;
   border-radius: 15px;

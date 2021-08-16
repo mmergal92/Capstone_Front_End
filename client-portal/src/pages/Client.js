@@ -7,11 +7,11 @@ const Client = (props) =>{
         return(
             <div>
                 <h1> Client Page </h1>
+                < ProgressTracker done ="70"/>
                 <div className="comment-box">
                 <CommentBox />
                 </div>
                 <div className="project-box">
-                < ProgressTracker done ="70"/>
                 <ProjectBox />
                 </div>
             </div>

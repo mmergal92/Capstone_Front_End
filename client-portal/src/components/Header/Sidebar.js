@@ -28,12 +28,6 @@ const Sidebar = [
         icon: <AiIcons.AiFillProject />,
         cName: 'nav-text'
     },
-    {
-        title: 'Login',
-        path: '/login',
-        icon: <AiIcons.AiFillInfoCircle />,
-        cName: 'nav-text'
-    }
 ]
 
 export default Sidebar;

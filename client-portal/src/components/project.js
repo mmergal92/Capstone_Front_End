@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+import FigmaShowComponent from './figmaShow';
 import { Dropdown, Option } from "./StatusDropdown/dropdown";
 import ProgressTracker from './StatusTracker/progressTracker';
 
@@ -168,6 +169,9 @@ function ProjectBox() {
                     </label><br/>
                     <button onClick= {handleSubmit}>Submit</button>
                 </form>
+                </div>
+                <div>
+                    < FigmaShowComponent />
                 </div>
             </div>
         )

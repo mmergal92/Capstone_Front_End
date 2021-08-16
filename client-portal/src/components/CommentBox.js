@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import { getByDisplayValue } from '@testing-library/react';
+import React, {useDebugValue, useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
 function CommentBox() {
-
     const userCommentlist = [{
         date: "June 12, 2021",
         comment: "It will go up",
@@ -13,6 +13,8 @@ function CommentBox() {
     // const [date, setDate] = useState('');
     const [comment, setComment] = useState('');
     const [showEdit, setShowEdit] = useState(false)
+    const [showContent, setShowContent] = useState(true)
+    const [idEdit, setIdEdit] = useState('')
     const [username, setUsername] = useState('');
     const [change, setChange] = useState(true)
     const [editComment, setEditComment] = useState(comment)
@@ -26,11 +28,23 @@ function CommentBox() {
     //     console.log("Adding text of username")
     //     setUsername(event.target.value)
     // };
-    const onToggle = () => {
+    const onToggle = (response) => {
+        console.log(response)
         setShowEdit(!showEdit)
+        setShowContent(!showContent)
+        setIdEdit(response.id)
+    }
+    const getNewList = async() => {
+        const postURL = "https://proof-backend.herokuapp.com/" + "user/"
+        const response = await fetch (postURL)
+        const data = await response.json()
+        // console.log(data)
+        setNewList(data);
+        // console.log(data.id)
     }
     const handleDelete= async(value)=>{
         const URL = "https://proof-backend.herokuapp.com/" + "user/"
+        console.log(value)
         console.log(URL)
         // console.log(tempArray[0].comment)
         const remove = await fetch (URL + "/" + value._id, {
@@ -38,11 +52,15 @@ function CommentBox() {
         })
         console.log(value._id)
     }
-    const handleEdit= async(response)=>{
+    const handleEdit= async(e)=>{
+        e.preventDefault()
+        console.log(e)
         const URL = "https://proof-backend.herokuapp.com/" + "user/"
-        console.log(response)
+        console.log(URL + e._id)
+        console.log(e.target)
+        // console.log(response.target.value)
         // console.log(tempArray[0].comment)
-        fetch (URL + "/" + response._id, {
+        await fetch (URL + editComment._id, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -54,23 +72,16 @@ function CommentBox() {
         })
         console.log("Did this work?")
         // const tempArray = newList;
-        tempArray.push(response)
+        tempArray.push(e)
         setNewList(tempArray)
         setChange(!change);
     }
-    const getNewList = async() => {
-        const postURL = "https://proof-backend.herokuapp.com/" + "user/"
-        const response = await fetch (postURL)
-        const data = await response.json()
-        // console.log(data)
-        setNewList(data);
-        // console.log(data.id)
-    }
-    const handleSubmit = (response) =>{
+
+    const handleSubmit = async(response) =>{
         console.log(response)
         const postURL = "https://proof-backend.herokuapp.com/" + "user/" 
         console.log(postURL)
-        fetch (postURL, {
+        await fetch (postURL, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -79,7 +90,8 @@ function CommentBox() {
             body: JSON.stringify ({
                 date: new Date(Date.now()).toLocaleString(),
                 comment: comment,
-                username: username,
+                profilepic: localStorage.getItem('ProfileImg'),
+                username: localStorage.getItem('userfRealName')
             })
         })
         console.log("Did this work?")
@@ -101,6 +113,7 @@ function CommentBox() {
                     <tr>
                         <th>Date</th>
                         <th>Comment</th>
+                        <th>Username</th>
                         <th>Action</th>
                         </tr>
                     </thead>
@@ -110,14 +123,15 @@ function CommentBox() {
                                 <tr key={index}> 
                                     <td>{value.date}</td>  
                                     <td>{value.comment}</td>  
-                                    <td><button onClick={onToggle}>EDIT</button></td>
-                                    <td><button onClick={() => handleDelete(value)}>DELETE</button></td>
+                                    <td className = "user"><img src={value.profilepic} alt="" />{value.username}</td>
+                                    <td>{localStorage.getItem('userfRealName') === value.username ? <button onClick={() => handleDelete(value)}>DELETE</button> : ''}{localStorage.getItem('userfRealName') === value.username ? <button onClick={onToggle}>EDIT</button> : ''} </td>
                                     </tr>
                         )})}
                     </tbody>
                     </table>
                 <br/>
                 </div>
+                {/* {showContent && */}
                 <div className = "new-comments">
                     <h3>Add a new Comment:</h3>
                     <form>
@@ -131,12 +145,16 @@ function CommentBox() {
                     <button onClick= {handleSubmit}>Submit</button>
                     </form>
                 </div>
+                 {/* } */}
                 {showEdit &&
-                 <form className = "edit" onSubmit={handleSubmit}>
+                <div className = "edit-comments">
+                <h3>Edit your Comment:</h3>
+                 <form className = "edit" onSubmit={handleEdit}>
                     <textarea className = "edit-input" value = {comment} onChange = {commentChange} placeholder = "Edit Comment"/>
                     <br/>
-                    <button onClick= {handleSubmit}>Update</button> 
+                    <input className="update" type = "submit" value="Update" />
                  </form>
+                 </div>
                 }
             </div>
         )

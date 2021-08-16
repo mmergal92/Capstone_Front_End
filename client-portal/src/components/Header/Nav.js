@@ -31,8 +31,15 @@ const Nav = () => {
             <Link to="/admin" className="adminnav">
                 <h4>ADMIN</h4>
             </Link>
-            <Link to="/login" className="loginnav">
+            <Link>
+            {localStorage.getItem('sessionEmail') === null ? <Link to = "/login" className="loginnav">
                 <h4>LOGIN</h4>
+            </Link>: ''} 
+            </Link>
+            <Link>
+            {localStorage.getItem('sessionEmail') !== null ? <Link to = "/login" className="loginnav">
+                <h4>LOGOUT</h4>
+            </Link>: ''}
             </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
