@@ -24,7 +24,7 @@ function FigmaShowComponent () {
     })
     const loaded = () =>{
         return (
-        <div>
+        <div className ="figma">
             <h4><button onClick = {toggle}>Figma Component</button></h4>
             {showFigma &&
                 <div className="figma-show">

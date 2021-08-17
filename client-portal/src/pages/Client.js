@@ -4,10 +4,11 @@ import ProjectBox from '../components/project'
 import ProgressTracker from '../components/StatusTracker/progressTracker'
 
 const Client = (props) =>{
+    const done = "70";
         return(
             <div>
                 <h1> Client Page </h1>
-                < ProgressTracker done ="70"/>
+                < ProgressTracker done ={done}/>
                 <div className="comment-box">
                 <CommentBox />
                 </div>

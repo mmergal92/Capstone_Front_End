@@ -11,12 +11,15 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/Login';
+import Form from './pages/Form';
 
 function App() {
   const URL = "http://localhost:3000/"
 
   return (
     <div className="App">
+      <div className="page-container">
+      <div className="content-wrap">
       <Header />
       <Switch>
         <Route exact path="/">
@@ -37,8 +40,13 @@ function App() {
         <Route path="/SignIn"> 
           <SignIn URL={URL}/>
         </Route>
+        <Route path="/form"> 
+          <Form />
+        </Route>
       </Switch>
       <Footer />
+      </div>
+      </div>
     </div>
   );
 }

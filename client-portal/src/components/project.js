@@ -108,7 +108,8 @@ function ProjectBox() {
         return (
             <div className = "project">
                 <div className = "existing-projects">
-                <h3>Here is the tracker for your project</h3> 
+                <h3>the project scope</h3> 
+                <br/>
                 <table>
                     <thead>
                     <tr>
@@ -139,17 +140,14 @@ function ProjectBox() {
                 <br/>
                 </div>
                 <div className = "new-projects">
-                <h3>Add a new Project:</h3>
+                <h3>Add a new project,<b> {localStorage.getItem('userfRealName')}</b>:</h3>
                 <form>
                     <label>
-                    <p className="project-text">
-                    Commenting as:
-                    <br />
-                    </p>
+                        <br/>
                     Title: 
-                    <input type = "text" className = "title_input" value = {title} onChange = {titleChange} placeholder = "New Project Title"/>
+                    <input type = "text" className = "project_input" value = {title} onChange = {titleChange} placeholder = "New Project Title"/>
                     Client:
-                    <input type = "text" className = "client_input" value = {client} onChange = {clientChange} placeholder = "New Project client"/>
+                    <input type = "text" className = "project_input" value = {client} onChange = {clientChange} placeholder = "New Project client"/>
                     Status:
                     <div>
       <Dropdown
@@ -164,8 +162,8 @@ function ProjectBox() {
         <Option value="Done" />
       </Dropdown>
     </div>
-                    <input type="status" className = "status_input" value = {status} onChange = {statusChange} placeholder = "New Project status"/>
-                    <textarea className = "notes_input" value = {Notes} onChange = {notesChange} placeholder = "New Project Notes"/>
+                    <input type="status" className = "project_input" value = {status} onChange = {statusChange} placeholder = "New Project status"/>
+                    <textarea className = "project_input" value = {Notes} onChange = {notesChange} placeholder = "New Project Notes"/>
                     </label><br/>
                     <button onClick= {handleSubmit}>Submit</button>
                 </form>

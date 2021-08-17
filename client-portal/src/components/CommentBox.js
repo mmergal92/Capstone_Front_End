@@ -107,7 +107,7 @@ function CommentBox() {
         return (
             <div className = "comments">
                 <div className = "existing-comments">
-                <h3>Thoughts and Ideas:</h3> 
+                <h3>thoughts and ideas</h3> 
                 <table>
                     <thead>
                     <tr>
@@ -133,13 +133,9 @@ function CommentBox() {
                 </div>
                 {/* {showContent && */}
                 <div className = "new-comments">
-                    <h3>Add a new Comment:</h3>
+                    <h3>Add a comment,<b> {localStorage.getItem('userfRealName')}</b>:</h3>
                     <form>
                     <label>
-                    <p className="textcomment">
-                    {/* Commenting as: */}
-                    <br />
-                    </p>
                     <textarea className = "comment_input" value = {comment} onChange = {commentChange} placeholder = "New Comment"/>
                     </label><br/>
                     <button onClick= {handleSubmit}>Submit</button>
